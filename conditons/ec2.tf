@@ -1,24 +1,10 @@
-resource "aws_security_group" "Allow_SSH" {
-    name = "Allow_SSH"
-    description = "allowing the SSH Session"
 
-    ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    }
-    egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-    }
-
-
+resource "aws_instance" "db" {
+    ami = var.image_id
+    vpc_security_group_ids = [aws_security_group.Allow_SSH.id]
+    instance_type = var.instance_name == "db" ? "t3.small" : "t3.micro"
     tags = {
-        Name = "Allow_SSH"
-        CreatedBy = "Shashikanth"
+      Name = var.tags
     }
-  
 }
+
