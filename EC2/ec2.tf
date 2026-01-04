@@ -1,6 +1,6 @@
 resource "aws_security_group" "Allow_SSH" {
     name = "Allow_SSH"
-    description = "allowing the SSH Session"
+    description = "allowing the SSH Session for the instance"
 
     ingress {
     from_port   = 22
