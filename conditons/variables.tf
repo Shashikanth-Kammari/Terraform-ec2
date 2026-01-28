@@ -18,3 +18,8 @@ variable "tags" {
 variable "image_id" {
   default = "12rfmncvn"
 }
+
+variable "region"{
+    default = "us-east-1"
+}
+
