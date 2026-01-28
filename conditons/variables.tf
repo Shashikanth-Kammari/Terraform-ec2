@@ -5,3 +5,7 @@ variable "zone_id" {
 variable "instance_name" {
     default = ["db", "frontend", "backend"]
 }
+
+variable "image_id" {
+    ami = "Amzjfndjn5365"
+}
