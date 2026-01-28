@@ -13,3 +13,4 @@ variable "tags" {
         Module = "db"
         Name = "db"
     }
+}
