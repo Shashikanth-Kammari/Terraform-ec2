@@ -14,3 +14,7 @@ variable "tags" {
         Name = "db"
     }
 }
+
+variable "image_id" {
+  default = "12rfmncvn"
+}
