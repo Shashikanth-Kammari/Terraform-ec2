@@ -6,6 +6,10 @@ variable "instance_name" {
     default = ["db", "frontend", "backend"]
 }
 
-variable "image_id" {
-    ami = "Amzjfndjn5365"
-}
+variable "tags" {
+    default = {
+        Project = "expense"
+        Environment = "Dev"
+        Module = "db"
+        Name = "db"
+    }
