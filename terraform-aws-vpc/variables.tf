@@ -1,0 +1,54 @@
+### project variables
+
+variable "project_name" {
+  type = string
+
+}
+
+variable "common_tags" {
+  type = map
+}
+
+variable "environment" {
+  type = string
+  default = "dev"
+}
+
+### VPC variables
+
+variable "vpc_cidr" {
+  type = string
+  default = "10.0.0.0/16"
+}
+
+variable "enable_dns_hostnames" {
+  type = bool
+  default = true
+}
+
+variable "vpc_tags" {
+  type = map
+  default = {}
+}
+
+##Internet gate way variable
+
+variable "igw_tags" {
+  type = map
+  default = {}
+}
+
+#public subnet 
+
+variable "public_subnet_cidrs" {
+  type = list
+  validation {
+    condition   = length(var.public_subnet_cidrs) == 2
+    error_message = "please provide 2 valid public sunet cidr"
+  }
+}
+
+variable "public_subnet_cidr_tags" {
+  type = map
+  default = {}
+}
