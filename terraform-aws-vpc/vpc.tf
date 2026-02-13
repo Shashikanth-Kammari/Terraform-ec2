@@ -36,7 +36,7 @@ resource "aws_subnet" "public" {
     var.common_tags,
     var.public_subnet_cidr_tags,
     {
-        Name = local.az_names[count.index]
+        Name = "${local.resource_name}-${local.az_names[count.index]}"
     }
   )
 }
