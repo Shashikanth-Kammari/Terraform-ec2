@@ -52,3 +52,8 @@ variable "public_subnet_cidr_tags" {
   type = map
   default = {}
 }
+
+variable "private_subnet_cidr_tags" {
+  type = map
+  default = {}
+}
