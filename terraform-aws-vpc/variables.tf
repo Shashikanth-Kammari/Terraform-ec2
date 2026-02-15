@@ -53,6 +53,18 @@ variable "public_subnet_cidr_tags" {
   default = {}
 }
 
+
+
+#public subnet 
+
+variable "private_subnet_cidrs" {
+  type = list
+  validation {
+    condition   = length(var.private_subnet_cidrs) == 2
+    error_message = "please provide 2 valid public sunet cidr"
+  }
+}
+
 variable "private_subnet_cidr_tags" {
   type = map
   default = {}
