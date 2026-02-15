@@ -38,7 +38,7 @@ resource "aws_subnet" "public" {
     var.common_tags,
     var.public_subnet_cidr_tags,
     {
-        Name = "${local.resource_name}-${local.az_names[count.index]}"
+        Name = "${local.resource_name}-public-${local.az_names[count.index]}"
     }
   )
 }
@@ -55,7 +55,7 @@ resource "aws_subnet" "private" {
     var.common_tags,
     var.private_subnet_cidr_tags,
     {
-        Name = "${local.resource_name}-${local.az_names[count.index]}"
+        Name = "${local.resource_name}-public-${local.az_names[count.index]}"
     }
   )
 }
@@ -71,9 +71,9 @@ resource "aws_subnet" "database" {
 
   tags = merge(
     var.common_tags,
-    var.private_subnet_cidr_tags,
+    var.database_subnet_cidr_tags,
     {
-        Name = "${local.resource_name}-${local.az_names[count.index]}"
+        Name = "${local.resource_name}-database-${local.az_names[count.index]}"
     }
   )
 }
