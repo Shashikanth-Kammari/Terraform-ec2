@@ -92,3 +92,15 @@ variable "nat_gateway_tags" {
   type = map
   default = {}
 }
+
+#route table tags
+
+variable "public_route_table_tags" {
+  type = map
+  default = {}
+}
+
+variable "private_route_table_tags" {
+  type = map
+  default = {}
+}

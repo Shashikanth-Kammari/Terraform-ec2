@@ -102,3 +102,43 @@ resource "aws_nat_gateway" "nat" {
   # on the Internet Gateway for the VPC.
   depends_on = [aws_internet_gateway.gw]  #this is explicite dependency 
 }
+
+### route table creation
+## public route table
+
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "10.0.1.0/24"
+    gateway_id = aws_internet_gateway.example.id
+  }
+
+  tags = merge(
+    var.common_tags,
+    var.public_route_table_tags,
+    {
+        Name = "${local.resource_name}-public"   #expense-dev
+    }
+  )
+}
+
+
+## private route table
+
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "10.0.11.0/24"
+    gateway_id = aws_internet_gateway.example.id
+  }
+
+  tags = merge(
+    var.common_tags,
+    var.private_route_table_tags,
+    {
+        Name = "${local.resource_name}-private"   #expense-dev
+    }
+  )
+}
