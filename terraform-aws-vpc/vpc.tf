@@ -138,7 +138,26 @@ resource "aws_route_table" "private" {
     var.common_tags,
     var.private_route_table_tags,
     {
-        Name = "${local.resource_name}-private"   #expense-dev
+        Name = "${local.resource_name}-private"   #expense-dev-private
+    }
+  )
+}
+
+## database route table
+
+resource "aws_route_table" "database" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block = "10.0.21.0/24"
+    gateway_id = aws_internet_gateway.example.id
+  }
+
+  tags = merge(
+    var.common_tags,
+    var.database_route_table_tags,
+    {
+        Name = "${local.resource_name}-database"   #expense-dev-database
     }
   )
 }
