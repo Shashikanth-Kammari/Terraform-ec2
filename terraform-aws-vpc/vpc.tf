@@ -109,11 +109,6 @@ resource "aws_nat_gateway" "nat" {
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
-  route {
-    cidr_block = "10.0.1.0/24"
-    gateway_id = aws_internet_gateway.example.id
-  }
-
   tags = merge(
     var.common_tags,
     var.public_route_table_tags,
@@ -129,10 +124,6 @@ resource "aws_route_table" "public" {
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 
-  route {
-    cidr_block = "10.0.11.0/24"
-    gateway_id = aws_internet_gateway.example.id
-  }
 
   tags = merge(
     var.common_tags,
@@ -147,11 +138,6 @@ resource "aws_route_table" "private" {
 
 resource "aws_route_table" "database" {
   vpc_id = aws_vpc.main.id
-
-  route {
-    cidr_block = "10.0.21.0/24"
-    gateway_id = aws_internet_gateway.example.id
-  }
 
   tags = merge(
     var.common_tags,
