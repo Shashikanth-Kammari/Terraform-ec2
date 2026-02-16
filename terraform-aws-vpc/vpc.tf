@@ -27,7 +27,7 @@ resource "aws_internet_gateway" "gw" {
 
 #public subnet 
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "public" {           #first  name is public[0], second name is public[1]
   count = length(var.public_subnet_cidrs)
   availability_zone = local.az_names[count.index]
   map_public_ip_on_launch = true
@@ -43,9 +43,9 @@ resource "aws_subnet" "public" {
   )
 }
 
-#private subnet 
+#private subnet      
 
-resource "aws_subnet" "private" {
+resource "aws_subnet" "private" {    #first  name is private[0], second name is private[1]
   count = length(var.public_subnet_cidrs)
   availability_zone = local.az_names[count.index]
   vpc_id     = aws_vpc.main.id
@@ -63,7 +63,7 @@ resource "aws_subnet" "private" {
 
 #database subnet 
 
-resource "aws_subnet" "database" {
+resource "aws_subnet" "database" {          #first  name is database[0], second name is database[1]
   count = length(var.database_subnet_cidrs)
   availability_zone = local.az_names[count.index]
   vpc_id     = aws_vpc.main.id
@@ -76,4 +76,29 @@ resource "aws_subnet" "database" {
         Name = "${local.resource_name}-database-${local.az_names[count.index]}"
     }
   )
+}
+
+#elastic Ip
+
+resource "aws_eip" "nat" {
+  domain   = "vpc"
+}
+
+#Nat Gateway
+
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public[0].id
+
+  tags = merge(
+    var.common_tags,
+    var.nat_gateway_tags,
+    {
+        Name = "${local.resource_name}"   #expense-dev
+    }
+  )
+
+  # To ensure proper ordering, it is recommended to add an explicit dependency
+  # on the Internet Gateway for the VPC.
+  depends_on = [aws_internet_gateway.gw]  #this is explicite dependency 
 }
