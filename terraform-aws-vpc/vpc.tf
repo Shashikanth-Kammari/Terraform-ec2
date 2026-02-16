@@ -178,7 +178,7 @@ resource "aws_route" "database_route_to_nat" {
 
 resource "aws_subnet_route_table_association" "public" {
   count = length(var.public_subnet_cidrs)
-  subnet_id      = aws_subnet.public[*].id
+  subnet_id      = element (aws_subnet.public[*].id, count.index)
   route_table_id = aws_route_table.public.id
 }
 
@@ -186,7 +186,7 @@ resource "aws_subnet_route_table_association" "public" {
 
 resource "aws_subnet_route_table_association" "private" {
   count = length(var.private_subnet_cidrs)
-  subnet_id      = aws_subnet.private[*].id
+  subnet_id      = element (aws_subnet.private[*].id, count.index)
   route_table_id = aws_route_table.private.id
 }
 
@@ -194,6 +194,6 @@ resource "aws_subnet_route_table_association" "private" {
 
 resource "aws_subnet_route_table_association" "databse" {
   count = length(var.database_subnet_cidrs)
-  subnet_id      = aws_subnet.databse[*].id
+  subnet_id      = element (aws_subnet.database[*].id, count.index)
   route_table_id = aws_route_table.databse.id
 }
