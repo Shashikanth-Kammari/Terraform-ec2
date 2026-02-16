@@ -104,3 +104,8 @@ variable "private_route_table_tags" {
   type = map
   default = {}
 }
+
+variable "database_route_table_tags" {
+  type = map
+  default = {}
+}
