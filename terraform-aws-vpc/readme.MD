@@ -42,6 +42,7 @@ We are creating following resources,  this module creates resources first two zo
 
 ### Outputs ###
 * vpc_id : VPC ID created 
-* public_subnet_ids: A list of 2 public subnet ids created
-* private_subnet_ids: A list of 2 private subnet ids created
-* database_subnet_ids: A list of 2 database subnet ids created
+* public_subnet_ids: A list of 2 public subnet ids created.
+* private_subnet_ids: A list of 2 private subnet ids created.
+* database_subnet_ids: A list of 2 database subnet ids created.
+* database_subnet_group_id: A database subenet group id created.
