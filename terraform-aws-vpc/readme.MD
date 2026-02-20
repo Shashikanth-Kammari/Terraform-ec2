@@ -39,3 +39,9 @@ We are creating following resources,  this module creates resources first two zo
 * is_peering_required (optiional):: default value is false, type is bool.
 * accepter_vpc_id (optiional):: default value is empty, default VPC ID would taken, type is string.
 * vpc_peering_tags (optiional):: default value is empty, type is map.
+
+### Outputs ###
+* vpc_id : VPC ID created 
+* public_subnet_ids: A list of 2 public subnet ids created
+* private_subnet_ids: A list of 2 private subnet ids created
+* database_subnet_ids: A list of 2 database subnet ids created
