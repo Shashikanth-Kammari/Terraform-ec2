@@ -78,6 +78,19 @@ resource "aws_subnet" "database" {          #first  name is database[0], second 
   )
 }
 
+resource "aws_db_subnet_group" "default" {
+  name       = "${local.resource_name}"
+  subnet_ids = aws_subnet.database[*].id
+
+  tags = merge(
+    var.common_tags,
+    var.database_subnet_group_tags,
+    {
+        Name = "${local.resource_name}}"
+    }
+  )
+}
+
 #elastic Ip
 
 resource "aws_eip" "nat" {
@@ -147,6 +160,7 @@ resource "aws_route_table" "database" {
     }
   )
 }
+
 
 
 ###routes creation
