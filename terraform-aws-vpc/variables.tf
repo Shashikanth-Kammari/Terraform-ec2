@@ -109,3 +109,16 @@ variable "database_route_table_tags" {
   type = map
   default = {}
 }
+
+
+### peering variables
+
+variable "is_peering_required" {
+  type = bool
+  default = false
+}
+
+variable "accepter_vpc_id" {
+  type = string
+  default = ""
+}
