@@ -9,7 +9,7 @@ terraform {
     bucket = "daws78s-remote-state"
     key    = "ec2-module-test"
     region = "us-east-1"
-    dynamodb_table = "daws78s-locking"
+    dynamodb_table = "daws78s-locking" 
   }
 }
 
