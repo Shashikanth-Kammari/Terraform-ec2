@@ -1,3 +1,3 @@
-output "instance_names" {
-  value = aws_instance.shashi.id
+output "instance_ids" {
+  value = aws_instance.shashi[*].id
 }
