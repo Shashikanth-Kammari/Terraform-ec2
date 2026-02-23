@@ -15,3 +15,7 @@ variable "sg_name" {
 variable "sg_discription" {
   type = string
 }
+
+variable "vpc_id" {
+  type = string
+}
