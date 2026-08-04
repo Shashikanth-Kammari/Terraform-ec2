@@ -3,7 +3,6 @@ resource "aws_instance" "jenkins" {
   ami           = "ami-0d9f6f413453de9a6"
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   user_data = file("jenkins.sh")
-  key_name      = var.key_name
   tags = {
     Name = "jenkins"
   }
